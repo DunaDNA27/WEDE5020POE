@@ -1,0 +1,569 @@
+
+/* --------------------------------------------------------------------------
+   1. BASE STYLES &amp; CSS RESET
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Color Palette - Pastel Blue Theme */
+    --bg-main: #f0f6fa;           /* Soft pastel blue-gray background */
+    --surface-white: #ffffff;      /* Clean card surface */
+    --primary-pastel: #a8dadc;     /* Core pastel blue */
+    --primary-hover: #81c3c7;      /* Hover state pastel blue */
+    --accent-blue: #457b9d;       /* Muted blue for links and accents */
+    --text-dark: #1d3557;         /* Deep navy slate for high contrast text */
+    --text-muted: #5c7080;        /* Secondary muted body text */
+    --border-subtle: #e1ebf0;     /* Light blue-gray border line */
+    --shadow-soft: 0 4px 20px rgba(29, 53, 87, 0.06);
+    --shadow-hover: 0 8px 25px rgba(29, 53, 87, 0.12);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+}
+
+body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--text-dark);
+    background-color: var(--bg-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --------------------------------------------------------------------------
+   2. TYPOGRAPHY STYLES
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4 {
+    color: var(--text-dark);
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 0.85rem;
+}
+
+h1 {
+    font-size: 2.25rem;
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+p {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--text-dark);
+}
+
+/* --------------------------------------------------------------------------
+   3. LAYOUT STRUCTURE &amp; CONTAINERS
+   -------------------------------------------------------------------------- */
+.container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Sticky Header &amp; Shared Navigation */
+header {
+    background-color: var(--surface-white);
+    border-bottom: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-soft);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column; /* Mobile first stack */
+    align-items: center;
+    padding: 1rem 1.5rem;
+    gap: 1rem;
+}
+
+.logo-link {
+    display: inline-block;
+}
+
+.brand-logo {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* Navigation List */
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.35rem;
+}
+
+nav a {
+    display: inline-block;
+    padding: 0.5rem 0.85rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+}
+
+nav a:hover {
+    background-color: var(--bg-main);
+    color: var(--accent-blue);
+}
+
+/* Active Page Highlight */
+nav a.active {
+    background-color: var(--primary-pastel);
+    color: var(--text-dark);
+}
+
+/* Main Content Area */
+main {
+    flex: 1;
+    padding: 2.5rem 0;
+}
+
+/* Hero Banner Styling */
+.hero {
+    background: linear-gradient(135deg, #ffffff 0%, #e8f1f5 100%);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 1.5rem;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Pastel Call To Action Button */
+.btn-primary {
+    display: inline-block;
+    background-color: var(--primary-pastel);
+    color: var(--text-dark);
+    font-weight: 600;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 3px 10px rgba(168, 218, 220, 0.4);
+    margin-top: 0.5rem;
+    transition: all 0.25s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(168, 218, 220, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   4. VISUAL STYLES &amp; CARD GRID
+   -------------------------------------------------------------------------- */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Default single column for small screens */
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.card {
+    background-color: var(--surface-white);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Footer Styling */
+footer {
+    background-color: var(--surface-white);
+    border-top: 1px solid var(--border-subtle);
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.container { 
+    max-width: 1200px; 
+    margin: 2rem auto 5rem; 
+    padding: 0 1.5rem; 
+}
+
+.categories { 
+    display: flex; 
+    gap: 0.75rem; 
+    justify-content: center; 
+    margin-bottom: 2.5rem; 
+    flex-wrap: wrap; 
+} 
+
+.badge { 
+    background: var(--surface-white); 
+    border: 1px solid var(--border); 
+    padding: 0.5rem 0.85rem; 
+    border-radius: 20px; 
+    font-size: 0.85rem; 
+    font-weight: 600; 
+    cursor: pointer; 
+    color: var(--text-dark);
+    border-bottom: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-soft);
+    top: 0; 
+} 
+
+.badge.active { 
+    background-color: var(--primary-pastel);
+    color: var(--text-dark);
+}
+
+.badge.hover {
+    background-color: var(--bg-main);
+    color: var(--accent-blue);
+}
+
+.article-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 2rem; 
+} 
+
+.article-card { 
+    background: var(--white); 
+    border: 1px solid var(--border); 
+    border-radius: 12px; 
+    overflow: hidden; display: flex; 
+    flex-direction: column; 
+} 
+
+.card-content { 
+    padding: 1.5rem; 
+    flex: 1; display: flex; 
+    flex-direction: column; 
+} 
+
+.tag { 
+    font-size: 0.75rem; 
+    text-transform: uppercase; 
+    letter-spacing: 0.05em; 
+    font-weight: 700; 
+    color: var(--primary); 
+    margin-bottom: 0.5rem; 
+} 
+
+.article-card h3 { 
+    font-size: 1.2rem; 
+    margin-bottom: 0.75rem;
+}
+
+ .article-card p { 
+    color: var(--gray); 
+    font-size: 0.92rem; 
+    margin-bottom: 1.25rem; 
+    flex: 1; 
+} 
+
+.read-more { 
+    font-weight: 600; 
+    color: var(--primary); 
+    text-decoration: none; 
+    font-size: 0.9rem; 
+}
+
+ .read-more:hover { 
+    text-decoration: underline; 
+}
+
+.badge-pop { 
+    position: absolute; 
+    top: -12px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background: var(--primary); 
+    color: var(--white); 
+    font-size: 0.75rem; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    padding: 0.25rem 0.8rem; 
+    border-radius: 12px; 
+}
+
+.plan-name { 
+    font-size: 1.3rem; 
+    margin-bottom: 0.5rem; 
+} 
+
+.plan-desc { 
+    color: var(--gray); 
+    font-size: 0.9rem; 
+    margin-bottom: 1.5rem; 
+} 
+
+.price { 
+    font-size: 2.8rem; 
+    font-weight: 800; 
+    margin-bottom: 1.5rem; 
+} 
+
+.price span { 
+    font-size: 1rem; 
+    color: var(--gray); 
+    font-weight: 400; 
+}
+.feature-list { 
+    list-style: none; 
+    margin-bottom: 2rem; 
+    flex: 1; 
+} 
+.feature-list li {
+     margin-bottom: 0.75rem; 
+     font-size: 0.95rem; 
+     color: var(--dark);
+     display: flex; 
+     align-items: center; 
+     gap: 0.5rem; 
+} 
+.feature-list li::before { 
+    content: "✓"; 
+    color: var(--primary);
+     font-weight: bold; 
+} 
+.btn { 
+    display: block; 
+    text-align: center; 
+    padding: 0.85rem; 
+    border-radius: 8px; 
+    text-decoration: none; 
+    font-weight: 600; 
+    font-size: 0.95rem; 
+} 
+.btn-outline { 
+    border: 1px solid var(--border); 
+    color: var(--dark); 
+} 
+.btn-outline:hover { 
+    background: var(--light); 
+} 
+.btn-primary { 
+    background: var(--primary); 
+    color: var(--white); 
+    border: none; 
+} 
+.btn-primary:hover { 
+    background: var(--primary-dark); 
+} 
+
+:root { --primary: #5b55d0; 
+    --primary-dark: #5b55d0; 
+    --dark: #0f172a; 
+    --gray: #64748b; 
+    --light: #f8fafc; 
+    --white: #ffffff; 
+    --border: #e2e8f0; 
+}
+ \* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+} 
+body { 
+    background: var(--light); 
+    color: var(--dark); 
+    line-height: 1.6; 
+}
+ header { 
+    background: var(--white); 
+    border-bottom: 1px solid var(--border); 
+    position: sticky; top: 0; z-index: 100; 
+}
+.nav-container { 
+    max-width: 1200px; 
+    margin: auto; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 1rem 1.5rem; 
+} 
+.logo { 
+    font-size: 1.3rem; 
+    font-weight: 700; 
+    color: var(--dark); 
+    text-decoration: none; 
+} 
+.logo span { 
+    color: var(--primary); 
+} 
+nav a { 
+    margin-left: 1.25rem; 
+    text-decoration: none; 
+    color: var(--gray); 
+    font-weight: 500; 
+    font-size: 0.95rem; 
+} 
+nav a:hover, nav a.active { 
+    color: var(--primary); 
+} 
+.contact-container { 
+    max-width: 1000px; 
+    margin: 4rem auto 6rem; 
+    padding: 0 1.5rem; display: grid; 
+    grid-template-columns: 1fr 1.3fr; 
+    gap: 3.5rem; 
+} 
+@media (max-width: 768px) { 
+    .contact-container { 
+        grid-template-columns: 1fr; 
+        gap: 2.5rem; } 
+    } 
+    .contact-info h1 { 
+        font-size: 2.4rem; 
+        margin-bottom: 1rem; 
+    } 
+    .contact-info p { 
+        color: var(--gray); 
+        margin-bottom: 2rem; 
+        font-size: 1.05rem; 
+    } 
+    .info-item { 
+        margin-bottom: 1.25rem; 
+    } 
+    .info-item h4 { 
+        font-size: 0.9rem; 
+        text-transform: uppercase; 
+        color: var(--gray); 
+        margin-bottom: 0.25rem; 
+    } 
+    .info-item p { 
+        color: var(--dark); 
+        font-weight: 500; 
+        margin: 0; font-size: 1rem; 
+    } 
+    .form-card { 
+        background: var(--white); 
+        border: 1px solid var(--border); 
+        border-radius: 14px; 
+        padding: 2.5rem; 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03); 
+    } 
+    .form-group { 
+        margin-bottom: 1.25rem; 
+    } 
+    label { 
+        display: block; 
+        font-weight: 600; 
+        font-size: 0.9rem; 
+        margin-bottom: 0.4rem; 
+    } 
+    input, select, textarea { 
+        width: 100%; 
+        padding: 0.75rem; 
+        border: 1px solid var(--border); 
+        border-radius: 8px; 
+        font-size: 0.95rem; 
+        outline: none; 
+    } 
+    input:focus, select:focus, textarea:focus { 
+        border-color: var(--primary); 
+    } 
+    textarea { 
+        resize: vertical; 
+        min-height: 120px; 
+    } 
+    button.submit-btn { 
+        width: 100%; 
+        background: var(--primary); 
+        color: var(--white); 
+        border: none; 
+        padding: 0.9rem; 
+        border-radius: 8px; 
+        font-weight: 600; 
+        font-size: 1rem; 
+        cursor: pointer; 
+        transition: background 0.2s; 
+    } 
+    button.submit-btn:hover { 
+        background: var(--primary-dark); 
+    }
+
+/* --------------------------------------------------------------------------
+   5. RESPONSIVE BREAKPOINTS &amp; MULTI-COLUMN LAYOUTS
+   -------------------------------------------------------------------------- */
+
+/* Breakpoint 1: Tablets &amp; Laptops (≥ 768px) */
+@media (min-width: 768px) {
+    .header-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    nav ul {
+        gap: 0.5rem;
+    }
+
+    .hero {
+        text-align: left;
+        padding: 3.5rem 3rem;
+    }
+
+    .hero p {
+        margin-left: 0;
+    }
+
+    /* Multi-Column Layouts */
+    .grid-2-col {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3-col {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Breakpoint 2: Large Desktop Screens (≥ 1024px) */
+@media (min-width: 1024px) {
+    h1 {
+        font-size: 2.75rem;
+    }
+
+    .grid-container {
+        gap: 2rem;
+    }
+}
+
